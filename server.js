@@ -15,6 +15,9 @@ app.set('view engine', 'ejs')
 // app.use(apiKeyMilddleware)  // this is global middleware used to apply on app
 
 app.use(express.static('public'))
+app.use(express.json())
+
+// app.use(express.urlencoded({ extended : false }))  // if we are doing normal form submission
 
 //app.use('/en', mainRouter)  // to use first param as prefix in url
 app.use(mainRouter)

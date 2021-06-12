@@ -32,9 +32,11 @@ const App = () => {
             },
             body : JSON.stringify(form)
         })
-            .then(res => res.JSON())
-            .then(data => {
-
+        .then(res => res.json())
+        .then(data => {
+                fetchProducts()
+                setForm({name: '', price: ''})
+                console.log(data)
             })
     }
 
@@ -43,6 +45,16 @@ const App = () => {
             ...form,
             [field]: event.target.value
         })
+    }
+
+    const deleteProduct = (productId) => {
+        fetch(`/api/products/${productId}`, {
+            method: 'DELETE' // PUT or PATCH for update
+        }).then((res) => res.json())
+            .then((data) => {
+                fetchProducts();
+                console.log(data)
+            })
     }
 
     return (
@@ -82,7 +94,7 @@ const App = () => {
                             <strong>{product.name} : </strong>
                             Rs. {product.price}
                         </div>
-                        <button className='btn'>
+                        <button className='btn' onClick={() => deleteProduct(product.id)}>
                             <svg xmlns="http://www.w3.org/2000/svg" 
                                 width="16" 
                                 height="16" 
