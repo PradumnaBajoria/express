@@ -1,6 +1,7 @@
 const express = require("express");
-
 const mainRouter = require('./routes/index')
+// const apiKeyMilddleware = require('./middlewares/apiKey')
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,6 +11,8 @@ app.set('view engine', 'ejs')
 
 // console.log(app.get('view engine'))
 // console.log(app.get('views'))
+
+// app.use(apiKeyMilddleware)  // this is global middleware used to apply on app
 
 app.use(express.static('public'))
 
