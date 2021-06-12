@@ -1,7 +1,7 @@
 const express = require("express");
 const mainRouter = require('./routes/index')
 // const apiKeyMilddleware = require('./middlewares/apiKey')
-
+const productRouter = require('./routes/products')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +18,6 @@ app.use(express.static('public'))
 
 //app.use('/en', mainRouter)  // to use first param as prefix in url
 app.use(mainRouter)
-
+app.use(productRouter)
 
 app.listen(PORT, () => console.log(`listning on port ${PORT}`));
