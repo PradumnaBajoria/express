@@ -41,10 +41,21 @@ const App = () => {
     }
 
     function updateForm(event, field){
-        setForm({
-            ...form,
-            [field]: event.target.value
-        })
+        if(field === 'name'){
+            setForm({
+                ...form,
+                name : event.target.value
+            })
+        }else if(field === 'price'){
+            setForm({
+                ...form,
+                price : event.target.value
+            })
+        }
+        // setForm({
+        //     ...form,
+        //     [field]: event.target.value
+        // })
     }
 
     const deleteProduct = (productId) => {

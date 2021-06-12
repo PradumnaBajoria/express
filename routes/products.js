@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const ErrorHandler = require('../errors/ErrorHandler');
 let products = require('../productData')
 
 
@@ -12,12 +13,14 @@ router.get('/api/products', (req, res) => {
     res.json(products)
 })
 
-router.post('/api/products', (req, res) => {
-    const {name, price} = req.body
+router.post('/api/products', (req, res, next) => {
+    const { name, price } = req.body
     // console.log("hello ", req.body)
-    
+    console.log(name, price)
     if(!name || !price) {
-        return res.status(422).json({ error : 'All fields are required' })
+        next(ErrorHandler.validationError())
+        // throw new Error('All fields are required!!')
+        // return res.status(422).json({ error : 'All fields are required' })
     }
 
     const product = {
